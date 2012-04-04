@@ -9,13 +9,15 @@ my ($target, %options);
 
 my %hosts = (
 	"pastebin"	=>	"http://pastebin.com/download.php?i=",
-	"edb"		=>	"http://www.exploit-db.com/download/" );
+	"edb"		=>	"http://www.exploit-db.com/download/",
+	"pastebay"	=>	"http://www.pastebay.net/pastebay.php?dl=" );
 
 getopts("t:i:o:h", \%options);
 if ($options{h}) {
 	print q{[*] Hosts:
 	pastebin	pastebin.com
 	edb		exploit-db.com
+	pastebay	pastebay.net
 };
 	exit 1;
 } elsif (!defined($options{t}) || (!defined($options{i})) || (!defined($options{o}))) {
@@ -29,6 +31,8 @@ if ($options{t} =~ m/pastebin/) {
 	$target = $hosts{pastebin};
 } elsif ($options{t} =~ m/edb/) {
 	$target = $hosts{edb};
+} elsif ($options{t} =~ m/pastebay/) {
+	$target = $hosts{pastebay};
 }
 
 my $url = $target . $id;
